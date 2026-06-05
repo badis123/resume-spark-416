@@ -14,7 +14,154 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analysis_results: {
+        Row: {
+          ats_score: number
+          cover_letter: string | null
+          created_at: string
+          cv_id: string | null
+          id: string
+          improved_experience: Json
+          job_company: string | null
+          job_description: string
+          job_title: string | null
+          match_score: number
+          missing_keywords: Json
+          optimized_summary: string | null
+          paid: boolean
+          recommended_skills: Json
+          user_id: string
+        }
+        Insert: {
+          ats_score?: number
+          cover_letter?: string | null
+          created_at?: string
+          cv_id?: string | null
+          id?: string
+          improved_experience?: Json
+          job_company?: string | null
+          job_description: string
+          job_title?: string | null
+          match_score?: number
+          missing_keywords?: Json
+          optimized_summary?: string | null
+          paid?: boolean
+          recommended_skills?: Json
+          user_id: string
+        }
+        Update: {
+          ats_score?: number
+          cover_letter?: string | null
+          created_at?: string
+          cv_id?: string | null
+          id?: string
+          improved_experience?: Json
+          job_company?: string | null
+          job_description?: string
+          job_title?: string | null
+          match_score?: number
+          missing_keywords?: Json
+          optimized_summary?: string | null
+          paid?: boolean
+          recommended_skills?: Json
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analysis_results_cv_id_fkey"
+            columns: ["cv_id"]
+            isOneToOne: false
+            referencedRelation: "cv_uploads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cv_uploads: {
+        Row: {
+          created_at: string
+          extracted_text: string
+          id: string
+          original_filename: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          extracted_text: string
+          id?: string
+          original_filename: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          extracted_text?: string
+          id?: string
+          original_filename?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount_cents: number | null
+          analysis_id: string | null
+          created_at: string
+          id: string
+          status: string
+          stripe_session_id: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_cents?: number | null
+          analysis_id?: string | null
+          created_at?: string
+          id?: string
+          status?: string
+          stripe_session_id?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_cents?: number | null
+          analysis_id?: string | null
+          created_at?: string
+          id?: string
+          status?: string
+          stripe_session_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_analysis_id_fkey"
+            columns: ["analysis_id"]
+            isOneToOne: false
+            referencedRelation: "analysis_results"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
