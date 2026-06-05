@@ -109,7 +109,7 @@ export function downloadCoverLetterPdf(data: OptimizedDocs) {
 }
 
 /* ---------------- DOCX ---------------- */
-function p(text: string, opts: { bold?: boolean; size?: number; heading?: HeadingLevel } = {}) {
+function p(text: string, opts: { bold?: boolean; size?: number; heading?: (typeof HeadingLevel)[keyof typeof HeadingLevel] } = {}) {
   return new Paragraph({
     heading: opts.heading,
     alignment: AlignmentType.LEFT,
